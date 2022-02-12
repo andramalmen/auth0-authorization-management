@@ -1,10 +1,10 @@
 import { useUser } from '@auth0/nextjs-auth0';
 import ErrorAlert from '../components/error';
 import Spinner from '../components/spinner';
+import { withPageAuthRequired } from '@auth0/nextjs-auth0';
 
 const Profile = () => {
   const { user, error, isLoading } = useUser();
-  const userData = useUser();
 
   if (isLoading) {
     return <Spinner />;
@@ -28,4 +28,4 @@ const Profile = () => {
   );
 };
 
-export default Profile;
+export default withPageAuthRequired(Profile);
